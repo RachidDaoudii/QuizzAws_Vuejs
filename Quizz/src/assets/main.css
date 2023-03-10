@@ -1,0 +1,83 @@
+@import './base.css';
+@import "bootstrap/dist/css/bootstrap.min.css";
+@import "bootstrap";
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  font-weight: normal;
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  /* #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  } */
+}body{
+  background-color:#eee;
+}
+
+label.radio {
+cursor: pointer;
+}
+
+label.radio input {
+position: absolute;
+top: 0; 
+left: 0;
+visibility: hidden;
+pointer-events: none;
+}
+
+label.radio span {
+border: 1px solid red;
+display: inline-block;
+color: red;
+padding: 10px 5px;
+/* width: 100px; */
+text-align: center;
+border-radius: 3px;
+margin-top: 7px;
+text-transform: uppercase;
+}
+
+label.radio input:checked + span {
+border-color: red;
+background-color: red;
+color: #fff;
+}
+
+.ans {
+margin-left: 36px !important;
+}
+
+.btn:focus {
+outline: 0 !important;
+box-shadow: none !important;
+}
+
+.btn:active {
+outline: 0 !important;
+box-shadow: none !important;
+}
