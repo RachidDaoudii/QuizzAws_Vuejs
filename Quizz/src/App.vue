@@ -2,10 +2,12 @@
 import Stepper from './components/stepper.vue'
 import StartQuizz from './components/StartQuizz.vue'
 import ResultQuizz from './components/ResultQuizz.vue'
+// import info from './components/info.vue'
 </script>
 
 <template>
   <Stepper/>
+  <!-- <info/> -->
   <StartQuizz/>
 </template>
 

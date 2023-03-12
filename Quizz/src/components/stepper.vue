@@ -4,8 +4,8 @@
     <div class="wrapper-progressBar">
       <ul class="progressBar">
         <li class="active">Info</li>
-        <li class="active">Quiz</li>
-        <li>Result</li>
+        <li class="">Quiz</li>
+        <li class="">Result</li>
       </ul>
     </div>
   </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mt-5">
+  <div class="container mt-5 quiz">
       <div class="d-flex justify-content-center row">
             <div class="logo d-flex justify-content-center">
               <img class="w-25" src="../assets/img/logo.png"  alt="">
@@ -25,15 +25,15 @@
                         <label class="radio"><input type="radio" 
                           :name="currentQuestion.index" 
                           :value="option.id"
-                          @click="response(option.id)"
+                          @click="response(option.id),nextQuestion()"
                           > <span>{{ option.content }}</span>
                         </label>    
                       </div>
                   </div>
                   <div class="d-flex flex-row justify-content-center align-items-center p-3 bg-white">
                     <button class="btn btn-primary border-success align-items-center btn-success"
-                    @click="nextQuestion"
-                    >next
+                   
+                    >{{ currentQuestion+1 == 10  ? 'Finish' : 'Next Question ' }}
                     </button>
                   </div>
               </div>
@@ -46,8 +46,15 @@
 .logo{
   width: 360px;
 }
+
+/* .quiz{
+  display: none;
+} */
 </style>
+
 <script setup>
+
+
 import {ref,computed} from 'vue'
 const data = ref([
   {
@@ -142,7 +149,7 @@ const data = ref([
                   },
                   {
                       "id":2,
-                      "content":") Amazon Route 53"
+                      "content":"Amazon Route 53"
                   },
                   {
                       "id":3,
@@ -340,6 +347,7 @@ const nextQuestion = ()=>{
     currentQuestion.value++
   }else{
     console.log('gfdgfd');
+    console.log(checkReponse);
   }
 }
 
@@ -362,7 +370,5 @@ const ReponesVrai = () =>{
     checkReponse.push(getQuestion.value.id)
   }
 }
-
-
 
 </script>
