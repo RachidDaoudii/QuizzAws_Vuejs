@@ -1,15 +1,15 @@
 <template>
   <div class="row">
-  <div class="col-xs-12 col-md-8 offset-md-2 block">
-    <div class="wrapper-progressBar">
-      <ul class="progressBar">
-        <li class="active">Info</li>
-        <li class="">Quiz</li>
-        <li class="">Result</li>
-      </ul>
+    <div class="col-xs-12 col-md-8 offset-md-2 block">
+      <div class="wrapper-progressBar">
+        <ul class="progressBar">
+          <li class="active">Info</li>
+          <li :class="{active:stp}">Quiz</li>
+          <li :class="{active:stp == 2 }">Result</li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <style scoped>
@@ -67,3 +67,8 @@
 }
 
 </style>
+<script>
+export default {
+  props: ['stp']
+}
+</script>

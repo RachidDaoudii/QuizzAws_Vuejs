@@ -2,13 +2,21 @@
 import Stepper from './components/stepper.vue'
 import StartQuizz from './components/StartQuizz.vue'
 import ResultQuizz from './components/ResultQuizz.vue'
-// import info from './components/info.vue'
+import info from './components/info.vue'
+import { ref } from 'vue'
+
+const count = ref(0)
+
+function increment() {
+  count.value++
+}
 </script>
 
 <template>
-  <Stepper/>
-  <!-- <info/> -->
-  <StartQuizz/>
+  <Stepper :callback="increment" :stp="count"/>
+  <info :callback="increment" v-if="count == 0"  />
+  <StartQuizz :callback="increment" v-if="count == 1" :stp="count" />
+  <!-- <ResultQuizz v-if="count == 2" /> -->
 </template>
 
 <style scoped>

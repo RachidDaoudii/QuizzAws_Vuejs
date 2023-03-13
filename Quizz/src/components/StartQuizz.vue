@@ -8,33 +8,43 @@
               <div class="border">
                   <div class="question bg-white p-3 border-bottom">
                       <div class="d-flex flex-row justify-content-between align-items-center mcq">
-                        <h4>Quiz</h4><span>( {{ currentQuestion+1 }} of 10)</span>
+                        <h4>{{ currentQuestion+1 == 10  ? 'Correction votre Question' : 'Quizz ' }}</h4><span>({{ currentQuestion+1 }} of 10)</span>
                       </div>
                   </div>
-                  <div class="question bg-white p-3 border-bottom"
-                  
-                  >
-                      <div class="d-flex flex-row align-items-center question-title">
-                          <h3 class="text-danger px-4">Q.{{ currentQuestion+1 }}</h3>
-                          <h5 class="mt-1 ml-2">{{ getQuestion.content  }}</h5>
-                      </div>
-                      <div class="ans ml-2"
-                      v-for="(option,index) in getQuestion.options"
-                      :key="index"
-                      >
-                        <label class="radio"><input type="radio" 
-                          :name="currentQuestion.index" 
-                          :value="option.id"
-                          @click="response(option.id),nextQuestion()"
-                          > <span>{{ option.content }}</span>
+                  <div class="question bg-white p-3 border-bottom" v-if="currentQuestion+1 != 10">
+                    <div class="d-flex flex-row align-items-center question-title">
+                        <h3 class="text-danger px-4">Q.{{ currentQuestion+1 }}</h3>
+                        <h5 class="mt-1 ml-2">{{ getQuestion.content  }}</h5>
+                    </div>
+                    <div class="ans ml-2"
+                    v-for="(option,index) in getQuestion.options"
+                    :key="index"
+                    >
+                    <label class="radio"><input type="radio" 
+                        :name="currentQuestion.index" 
+                        :value="option.id"
+                        @click="response(option.id),nextQuestion()"
+                        > <span>{{ option.content }}</span>
+                    </label>    
+                    </div>
+                  </div>
+                  <div class="question bg-white p-3 border-bottom scrollbar" v-if="currentQuestion+1 == 10">
+                    
+                    <div class="ans ml-2" v-for="comment in Reuslt">
+                        <div class="d-flex flex-row align-items-center question-title">
+                        <h3 class="text-danger px-4 pt-2 pb-2">Q.{{ comment.id }}</h3>
+                    </div>
+                        <label class="radio">
+                        <span>{{ comment.answer.comment }}</span>
                         </label>    
-                      </div>
+                    </div>
                   </div>
                   <div class="d-flex flex-row justify-content-center align-items-center p-3 bg-white">
-                    <button class="btn btn-primary border-success align-items-center btn-success"
-                   
-                    >{{ currentQuestion+1 == 10  ? 'Finish' : 'Next Question ' }}
-                    </button>
+                    <!-- <button class="btn btn-primary border-success align-items-center btn-success"
+                    @click="execute"
+                    v-if="currentQuestion+1 == 10"
+                    >Finish
+                    </button> -->
                   </div>
               </div>
           </div>
@@ -46,14 +56,14 @@
 .logo{
   width: 360px;
 }
-
-/* .quiz{
-  display: none;
-} */
+.scrollbar {
+  height:300px;
+  overflow-y: scroll;
+}
 </style>
 
 <script setup>
-
+import Quiz from './StartQuizz.vue';
 
 import {ref,computed} from 'vue'
 const data = ref([
@@ -326,15 +336,7 @@ const data = ref([
   }
 ]);
 
-
 const score = computed(()=> {
-  // let val = 0
-  // question.value.map(Q =>{
-  //   if(Q.options.id == Q.answer.correct){
-  //     val++
-  //   }
-  //   return val
-  // })
   let val = 0
   return val
 })
@@ -346,7 +348,6 @@ const nextQuestion = ()=>{
   if(currentQuestion.value < data.value[0].questions.length -1){
     currentQuestion.value++
   }else{
-    console.log('gfdgfd');
     console.log(checkReponse);
   }
 }
@@ -357,8 +358,8 @@ const getQuestion = computed(()=>{
 })
 
 
-let checkReponse =[];
 
+let checkReponse =[];
 var checkedOption = null
 
 const response = (id)=>{
@@ -371,4 +372,35 @@ const ReponesVrai = () =>{
   }
 }
 
+let listComments =[];
+
+const Reuslt = computed(()=>{
+    data.value[0].questions.filter(comments => {
+        if(checkReponse.includes(comments.id) == true){
+            listComments.push(comments);
+        }
+    })
+    return listComments; 
+})
+
+
 </script>
+
+<script>
+export default { 
+    props: {
+        callback: {
+        type: Function
+        }
+    },
+    methods: {
+        execute() {
+        if (this.callback) {
+            this.callback()
+        }
+        }
+    },
+    props: ['stp']
+}
+</script>
+

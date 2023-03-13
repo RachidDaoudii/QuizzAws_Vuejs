@@ -9,14 +9,10 @@
                 <div class="border">
                     <div class="question bg-white p-3 border-bottom">
                         <div class="d-flex flex-row justify-content-between align-items-center mcq">
-                          <h4>Aws Quiz</h4><span>(1 of 20)</span>
+                          <h4>Aws Quiz</h4><span>(10 of 10)</span>
                         </div>
                     </div>
                     <div class="question bg-white p-3 border-bottom">
-                        <div class="d-flex flex-row align-items-center question-title">
-                            <h3 class="text-danger">Q.</h3>
-                            <h5 class="mt-1 ml-2">Which of the following country has largest population?</h5>
-                        </div>
                         <div class="ans ml-2">
                           <label class="radio"> <input type="radio" name="brazil" value="brazil"> <span>Brazil</span>
                           </label>    
@@ -34,25 +30,32 @@
                           </label>    
                         </div>
                     </div>
-                    <div class="d-flex flex-row justify-content-center align-items-center p-3 bg-white">
-                      <!-- <button class="btn btn-primary d-flex align-items-center btn-danger" type="button">
-                        <i class="fa fa-angle-left mt-1 mr-1"></i>&nbsp;previous</button> -->
+                    <!-- <div class="d-flex flex-row justify-content-center align-items-center p-3 bg-white">
+                      <button class="btn btn-primary d-flex align-items-center btn-danger" type="button">
+                        <i class="fa fa-angle-left mt-1 mr-1"></i>&nbsp;previous</button>
                       <button class="btn btn-primary border-success align-items-center btn-success" type="button">Next<i class="fa fa-angle-right ml-2"></i>
                       </button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
   </result-component>
 </template>
-
-<script setup>
-
+<script>
+export default {
+  name: 'ChildComponent',
+  props: {
+    items: {
+      type: Array,
+      required: true
+    }
+  }
+};
 </script>
 
 <style scoped>
 .logo{
-  width: 100px;
+  width: 360px;
 }
 </style>

@@ -5,5 +5,4 @@ import './assets/main.css'
 // import "bootstrap"
 
 
-
 createApp(App).mount('#app')
