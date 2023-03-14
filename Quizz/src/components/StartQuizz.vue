@@ -8,7 +8,8 @@
               <div class="border">
                   <div class="question bg-white p-3 border-bottom">
                       <div class="d-flex flex-row justify-content-between align-items-center mcq">
-                        <h4>{{ currentQuestion+1 == 10  ? 'Correction votre Question' : 'Quizz ' }}</h4><span>({{ currentQuestion+1 }} of 10)</span>
+                        <h4>{{ currentQuestion+1 == 10  ? 'Correction votre Question' : 'Quizz ' }}</h4>
+                        <span>({{ currentQuestion+1 }} of 10)</span>
                       </div>
                   </div>
                   <div class="question bg-white p-3 border-bottom" v-if="currentQuestion+1 != 10">
@@ -40,11 +41,7 @@
                     </div>
                   </div>
                   <div class="d-flex flex-row justify-content-center align-items-center p-3 bg-white">
-                    <!-- <button class="btn btn-primary border-success align-items-center btn-success"
-                    @click="execute"
-                    v-if="currentQuestion+1 == 10"
-                    >Finish
-                    </button> -->
+                    <!-- <button @click="callback"> gdfgsfd</button> -->
                   </div>
               </div>
           </div>
@@ -64,8 +61,8 @@
 
 <script setup>
 import Quiz from './StartQuizz.vue';
+import {ref,computed,defineProps} from 'vue'
 
-import {ref,computed} from 'vue'
 const data = ref([
   {
       "title":"AWS - Quiz",
@@ -336,6 +333,7 @@ const data = ref([
   }
 ]);
 
+
 const score = computed(()=> {
   let val = 0
   return val
@@ -357,8 +355,6 @@ const getQuestion = computed(()=>{
   return question
 })
 
-
-
 let checkReponse =[];
 var checkedOption = null
 
@@ -375,32 +371,19 @@ const ReponesVrai = () =>{
 let listComments =[];
 
 const Reuslt = computed(()=>{
+
     data.value[0].questions.filter(comments => {
         if(checkReponse.includes(comments.id) == true){
             listComments.push(comments);
         }
     })
     return listComments; 
+
 })
 
+const props = defineProps({
+    callback: Function,
+});
+
 
 </script>
-
-<script>
-export default { 
-    props: {
-        callback: {
-        type: Function
-        }
-    },
-    methods: {
-        execute() {
-        if (this.callback) {
-            this.callback()
-        }
-        }
-    },
-    props: ['stp']
-}
-</script>
-

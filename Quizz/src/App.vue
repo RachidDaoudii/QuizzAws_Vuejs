@@ -16,7 +16,7 @@ function increment() {
   <Stepper :callback="increment" :stp="count"/>
   <info :callback="increment" v-if="count == 0"  />
   <StartQuizz :callback="increment" v-if="count == 1" :stp="count" />
-  <!-- <ResultQuizz v-if="count == 2" /> -->
+  <ResultQuizz v-if="count == 2" />
 </template>
 
 <style scoped>

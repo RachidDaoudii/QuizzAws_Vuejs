@@ -25,6 +25,7 @@
                       @click="execute"
                       >Start
                       </button>
+
                     </div>
                 </div>
             </div>
@@ -45,7 +46,16 @@ export default {
         if (this.callback) {
           this.callback()
         }
-      }
+      },
+    //   handleClick() {
+    //   console.log('Button clicked!');
+    // },
+
+    // autoClickButton() {
+    //   this.$nextTick(() => {
+    //     this.$refs.myButton.click();
+    //   });
+    // }
     }
 }
 </script>
